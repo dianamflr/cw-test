@@ -1,0 +1,18 @@
+# Default AWS Config
+version: 1
+formatters:
+    json:
+      format: "[%(asctime)s] %(process)d %(levelname)s %(name)s:%(funcName)s:%(lineno)s - %(message)s"
+    plaintext:
+      format: "[%(asctime)s] %(process)d %(levelname)s %(name)s:%(funcName)s:%(lineno)s - %(message)s"
+handlers:
+    watchtower:
+      class: watchtower.CloudWatchLogHandler
+      formatter: json
+      level: DEBUG
+      log_group: diana-logging-test
+      stream_name:  test
+      create_log_group: False
+loggers:
+    root:
+      handlers: [watchtower]
